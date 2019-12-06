@@ -1,0 +1,21 @@
+
+#stats {
+    position: fixed;
+    width: 1200px;
+    left: 50%;
+    margin-left: -600px;
+    top: 50%;
+    margin-top: -308px;
+    height: 28px;
+    background: #110022;
+    color: #666;
+    padding: 4px;
+    border: solid 1px #220044;
+    border-bottom: none;
+
+    > * {
+        display: block;
+        float: left;
+    } 
+}
+

@@ -1,0 +1,23 @@
+header, footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background: #110022;
+    color: white;
+    cursor: default;
+}
+
+header {
+    top: 0;
+    height: 40px;
+}
+
+footer {
+    bottom: 0;
+    height: 30px;
+    font-size: 12px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.2);
+}
+

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <header>
+        jWars
+    </header>
+    <div class="container body-content">
+
+        <div id="stats">
+            <div id="tick"></div>
+            <div id="score"></div>
+            <div id="life"></div>
+        </div>
+        <div id="game"></div>
+
+        <div id="menu" style="display: none;">
+            <p>Welcome</p>
+            <a id="new-game">New Game</a>
+        </div>
+    </div>
+    <footer>
+        &copy; @DateTime.Now.Year - jWars
+    </footer>
+
+    <script src="/Scripts/lib/jquery.js"></script>
+    <script src="/Scripts/init.js"></script>
+    <script src="/Scripts/game/game.js"></script>
+    <script src="/Scripts/game/view.js"></script>
+    <script src="/Scripts/game/statsBar.js"></script>
+    <script src="/Scripts/entities/entityManager.js"></script>
+    <script src="/Scripts/entities/collisionManager.js"></script>
+    <script src="/Scripts/player/player.js"></script>
+    <script src="/Scripts/player/mouse.js"></script>
+    <script src="/Scripts/player/bullet.js"></script>
+    <script src="/Scripts/background/planet.js"></script>
+    <script src="/Scripts/enemy/enemy1.js"></script>
+    <script src="/Scripts/explosion/explosion.js"></script>
+    <script src="/Scripts/main.js"></script>
+
+</body>
+</html>

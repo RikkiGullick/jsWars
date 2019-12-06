@@ -1,0 +1,15 @@
+
+#game {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 1200px;
+    height: 560px;
+    margin-top: -280px;
+    margin-left: -600px;
+    background: black;
+    border: solid 1px #220044;
+    overflow: hidden;
+
+    background-image: url(/images/stars-back.png), linear-gradient(to bottom, #110022 0%, #000000 50%, #220033 100%);
+} 

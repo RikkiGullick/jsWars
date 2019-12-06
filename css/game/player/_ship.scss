@@ -1,0 +1,12 @@
+
+.player-ship {
+    width:106px;
+    height: 40px;
+    background: url(/images/player1.png) no-repeat center center;
+    background-size: contain;
+    z-index: 11;
+
+    &.ouch {
+        background-image: url(/images/player-hit.png);
+    }
+}
