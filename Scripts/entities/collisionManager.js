@@ -1,8 +1,6 @@
 ﻿
-sw.collisionManager = function collisionManager() {}
-
-sw.collisionManager.prototype = {
-    process: function (entities) {
+export default class CollisionManager {
+    process (entities) {
         var index = 0,
             player = entities[0].type === 'player' ? entities[0] : null,
             enemies = entities.filter(function (entity) { return entity.type === 'enemy' && !entity.destroyed; }),
@@ -13,9 +11,9 @@ sw.collisionManager.prototype = {
         if (player) {
             this._processPlayerCollisions(collideWithPlayer, player);
         }
-    },
+    }
 
-    _processEnemyCollisions: function (entities, enemies) {
+    _processEnemyCollisions (entities, enemies) {
         for (var i = 0; i < entities.length; i++) {
             var entity = entities[i];
             for (var j = 0; j < enemies.length; j++) {
@@ -25,18 +23,18 @@ sw.collisionManager.prototype = {
                 }
             }
         }
-    },
+    }
 
-    _processPlayerCollisions(entities, player) {
+    _processPlayerCollisions (entities, player) {
         for (var i = 0; i < entities.length; i++) {
             var entity = entities[i];
             if (this._isCollision(entity, player)) {
                 entity.processCollision(player);
             }
         }
-    },
+    }
 
-    _isCollision: function (entity1, entity2) {
+    _isCollision (entity1, entity2) {
         if (entity1.destroyed || entity2.destroyed) return false;
         var b1 = this._entityBounds(entity1),
             b2 = this._entityBounds(entity2);
@@ -45,9 +43,9 @@ sw.collisionManager.prototype = {
             return true;
         }
         return false;
-    },
+    }
 
-    _entityBounds: function (entity) {
+    _entityBounds (entity) {
         var x = entity.x, y = entity.y;
         return {
             x: x,

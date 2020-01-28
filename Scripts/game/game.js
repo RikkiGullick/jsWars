@@ -1,42 +1,45 @@
-﻿/// <reference path="../view/view.js" />
+﻿
+import Player from './../player/player.js';
+import StatsBar from './statsBar.js';
+import View from './view.js';
+import EntityManager from './../entities/entityManager.js';
 
-(function () {
+class GameSystem {
+    entityManager = null;;
+    _view = null;
+    _player = null;
+    _tick = 0;
 
-    window.gameSystem = {
-        entityManager: null,
-        _view: null,
-        _player: null,
-        _tick: 0,
+    constructor() {
+        this.entityManager = new EntityManager();
+        this.stats = new StatsBar();
+        this._view = new View();
+    }
 
-        init: function() {
-            this.entityManager = new sw.entityManager();
-            this.stats = new sw.statsBar();
-            this._view = new sw.view();
-        },
+    start() {
+        this._player = new Player();
+        this._startLoop();
+    }
 
-        start: function startGame() {
-            this._player = new sw.player();
-            this._startLoop();
-        },
+    _startLoop() {
+        var _this = this;
+        this._intervalId = setInterval(function () {
+            _this._run();
+        }, 1000 / 60);
+    }
 
-        _startLoop: function startLoop() {
-            var _this = this;
-            this._intervalId = setInterval(function () {
-                _this._run();
-            }, 1000 / 60);
-        },
+    _stopGame() {
+        clearInterval(this._intervalId);
+    }
 
-        _stopGame: function stopGameLoop() {
-            clearInterval(this._intervalId);
-        },
+    _run() {
+        this.entityManager.update(this._tick);
+        this._view.draw();
+        this._tick++;
 
-        _run: function gameRunLoop() {
-            this.entityManager.update(this._tick);
-            this._view.draw();
-            this._tick++;
+        this.stats.setTick(this._tick);
+    }
+}
 
-            this.stats.setTick(this._tick);
-        }
-    };
-
-})();
+let game = new GameSystem();
+export default game;
