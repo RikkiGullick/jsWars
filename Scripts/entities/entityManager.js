@@ -1,7 +1,7 @@
 ﻿
 import CollisionManager from "./collisionManager.js";
-import Enemy1 from "./../enemy/enemy1.js";
-import Planet from "./../background/planet.js";
+import Enemy1 from "../enemy/enemy1.js";
+import Planet from "../background/planet.js";
 
 export default class EntityManager {
     _entities = null;

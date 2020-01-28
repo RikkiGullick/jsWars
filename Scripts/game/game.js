@@ -1,8 +1,8 @@
 ﻿
-import Player from './../player/player.js';
+import Player from '../player/player.js';
 import StatsBar from './statsBar.js';
 import View from './view.js';
-import EntityManager from './../entities/entityManager.js';
+import EntityManager from '../entities/entityManager.js';
 
 class GameSystem {
     entityManager = null;;

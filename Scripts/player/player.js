@@ -1,7 +1,7 @@
 ﻿
-import Game from "./../game/game.js";
+import Game from "../game/game.js";
 import Bullet from './bullet.js';
-import Explosion from './../explosion/explosion.js';
+import Explosion from '../explosion/explosion.js';
 import MouseController from './mouse.js';
 
 export default class Player {

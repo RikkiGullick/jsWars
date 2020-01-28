@@ -1,5 +1,5 @@
 ﻿
-import Game from "./../game/game.js";
+import Game from "../game/game.js";
 
 export default class Planet {
     $element = null;
