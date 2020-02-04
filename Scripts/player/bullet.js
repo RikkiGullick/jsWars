@@ -1,55 +1,53 @@
 ﻿
-sw.bullet = function bullet(startX, startY, xSpeed, ySpeed) {
-    this.init(startX, startY, xSpeed, ySpeed);
-}
+import Game from '../game/game.js';
 
-sw.bullet.prototype = {
-    $element: null,
-    x: 0,
-    y: 0,
-    width: 12,
-    height: 8,
-    isNew: true,
-    rotation: 0,
-    destroyed: false,
-    _xSpeed: 0,
-    _ySpeed: 0,
+export default class Bullet {
+    $element = null;
+    x = 0;
+    y = 0;
+    width = 12;
+    height = 8;
+    isNew = true;
+    rotation = 0;
+    destroyed = false;
+    _xSpeed = 0;
+    _ySpeed = 0;
 
-    energy: 10,
-    type: 'bullet',
-    collideWith: 'enemy',
+    energy = 10;
+    type = 'bullet';
+    collideWith = 'enemy';
 
-    init: function (startX, startY, xSpeed, ySpeed) {
+    constructor (startX, startY, xSpeed, ySpeed) {
         this.x = startX;
         this.y = startY;
         this._xSpeed = xSpeed;
         this._ySpeed = ySpeed;
         this._createElement();
-        gameSystem.entityManager.add(this);
-    },
+        Game.entityManager.add(this);
+    }
 
-    update: function () {
+    update() {
         this.x += this._xSpeed;
         this.y += this._ySpeed;
-        if (gameSystem.entityManager.outOfBounds(this)) {
+        if (Game.entityManager.outOfBounds(this)) {
             this._destroy();
         }
-    },
+    }
 
-    processCollision: function processCollision(enemy) {
+    processCollision(enemy) {
         enemy.removeLife(this.energy);
         this._destroy();
-    },
+    }
 
-    _destroy: function kill() {
+    _destroy() {
         this.destroyed = true;
         if (this.$element) {
             this.$element.remove();
             this.$element = null;
         }
-    },
+    }
 
-    _createElement: function () {
+    _createElement() {
         this.$element = $('<div></div>').addClass('entity bullet');
     }
 };

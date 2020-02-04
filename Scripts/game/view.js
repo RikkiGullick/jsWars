@@ -1,24 +1,22 @@
 ﻿
-sw.view = function view(entityList) {
-    this.init(entityList);
-}
+import Game from './game.js';
 
-sw.view.prototype = {
-    _$view: null,
-    _bounds: { width: 0, height: 0 },
+export default class View {
+    _$view = null;
+    _bounds = { width: 0, height: 0 };
 
-    init: function () {
+    constructor() {
         this._$view = $('#game');
-    },
+    }
 
-    draw: function drawEntities() {
+    draw() {
         var _this = this;
-        window.gameSystem.entityManager.getEntities().forEach(function (entity) {
+        Game.entityManager.getEntities().forEach(function (entity) {
             _this._updateEntity(entity);
         });
-    },
+    }
 
-    _updateEntity: function updateEntity(entity) {
+    _updateEntity(entity) {
         if (entity.isNew && entity.$element) {
             entity.$element.appendTo(this._$view);
             entity.isNew = false;
