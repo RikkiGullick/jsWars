@@ -12,8 +12,8 @@ export default class StatsBar {
         this._$tick.text(value);
     }
 
-    setScore() {
-        this._$score.text("Placeholder for the current score");
+    setScore(value) {
+        this._$score.text(value);
     }
-    // So we have a new method in the class now. We need to go and find where setScore should be called. Something presumably should create a new instance of StatsBar, when a new game is started? I guess we will need to call it there? Hmm, let's go see. (Skips off in search....)
+    // Need to get whatever calls the function setScore to pass the value of how many 'destroys' have happened.
 };

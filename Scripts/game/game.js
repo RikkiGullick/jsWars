@@ -11,8 +11,7 @@ class GameSystem {
     _view = null;
     _player = null;
     _tick = 0;
-    _score = ""; // Have set this to string for now cos realised my placeholder is a string, not numeric!! 
-
+    
     constructor() {
         this.entityManager = new EntityManager();
         this.stats = new StatsBar();  // Aha - found it! So this creates an object called 'stats', created from class 'StatsBar', inside object instance of GameSystem class. This class now has my new method in it which makes a jQuery object from the score div and when the setScore method is run, adds placeholder text to the div.
@@ -41,7 +40,7 @@ class GameSystem {
         this._tick++;
 
         this.stats.setTick(this._tick);
-        this.stats.setScore(); // so when method '_run' is called, the object instance 'stats' runs method setScore using the placeholder in the class. Err I think.  (Head explodes from too many things inside things inside things) I intially copied the line above with this._score but then realised the method didn't do anything with that. 
+        this.stats.setScore("Test"); // so when method '_run' is called, the object instance 'stats' runs method setScore, passing this placeholder argument to it. How do I get a useful argument into it? I think I need to make a variable somewhere in entityManager instance, or collisionManager, and raise it by one each time the collision thing returns true. My challenge is how to get that info from one place to another. I shall think about this another time cos faffed about for a while getting nowhere. (Update - I added a variable in explosion to try and count explosions, but failed - didn't check when explosion runs and its obviously creating a new instance each time explosion happens so my variable is always resetting to zero with each instance. Drat. Oh well. Next time!)
     }
 }
 
