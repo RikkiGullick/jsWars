@@ -10,7 +10,7 @@ export default class Explosion {
     scale = 1;
     destroyed = false;
     _age = 0;
-    scoreExplosion = 0; // test!
+    
 
     constructor (x, y, xSpeed, ySpeed, cssClass, maxAge) {
         this.x = x;
@@ -36,8 +36,8 @@ export default class Explosion {
     }
 
     _destroy () {
-        this.scoreExplosion += 1; // Add 1 to scoreExplosion
-        console.log(this.scoreExplosion); // This is logging 1 for each explosion. Sort of good. But also drat. Need to approach this differently cos need more 'globally available' way of storing how many destroy/explosions have happened. So why only ever 1? theory is that perhaps a new instance of Explosion is created with each entity, and therefore the variable scoreExplosion gets reset to 0 so it only ever gets plus 1 each time _destroy runs - and it can clearly only run once for each entity! Or something. I'll look into this another time after more coffee.
+        Game.scoreExplosion += 1; // Add 1 to scoreExplosion in instance game of gameSystem. Do I need a capital?
+        console.log(Game.scoreExplosion); // This is logging 1 for each explosion. Sort of good. But also drat. Need to approach this differently cos need more 'globally available' way of storing how many destroy/explosions have happened. So why only ever 1? theory is that perhaps a new instance of Explosion is created with each entity, and therefore the variable scoreExplosion gets reset to 0 so it only ever gets plus 1 each time _destroy runs - and it can clearly only run once for each entity! Or something. I'll look into this another time after more coffee.
         if (this.destroyed) return;
         this.destroyed = true;
         this.$element.remove();
