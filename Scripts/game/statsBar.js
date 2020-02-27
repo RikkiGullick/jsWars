@@ -1,9 +1,7 @@
 ﻿
-import Explosion from '../explosion/explosion.js';
+// import Explosion from '../explosion/explosion.js';
 
-// Interesting. The above is greyed out. It doesn't seem to like import/export on the same file. I wanted to import explosion so that I could update a new property in statsBar from explosion, rather than updating a property in game. I may be doing the wrong approach though....
-// Oh - no that can't be correct, explosion.js has both imports AND exports. What am I doing wrong then?
-// Oh - I'm NOT doing anything wrong - I just haven't referenced 'Explosion' anywhere here yet. 
+// Can't remember why I was trying to import Explosion!  
 
 export default class StatsBar {
     _$tick = null;
@@ -20,8 +18,8 @@ export default class StatsBar {
         this._$tick.text(value);
     }
 
-    setScore(value) {
-        this._$score.text(`Score: ${value}`);
+    setScore() {
+        this._$score.text(`Score: ${this.score}`);
     }
     // Need to get whatever calls the function setScore to pass the value of how many 'destroys' have happened. UPDATE - I now have a variable with the score in it, in instance 'game!!' Just need to check that the file which calls setScore can see it, and then pass the value to the function. UPDATE: DONE!!!! WOOOHOOOOO!!!
 };

@@ -42,8 +42,7 @@ class GameSystem {
         this._tick++;
 
         this.stats.setTick(this._tick);
-        this.stats.setScore(StatsBar.score); // so when method '_run' is called, the object instance 'stats' runs method setScore, passing this placeholder argument to it. How do I get a useful argument into it? I think I need to make a variable somewhere in entityManager instance, or collisionManager, and raise it by one each time the collision thing returns true. My challenge is how to get that info from one place to another. I shall think about this another time cos faffed about for a while getting nowhere. (Update - I added a variable in explosion to try and count explosions, but failed - didn't check when explosion runs and its obviously creating a new instance each time explosion happens so my variable is always resetting to zero with each instance. Drat. Oh well. Next time!)
-        // UPDATE - I managed to get explosion.js to update the variable in game so I can now pass that here. (note to self - when it's imported, by the looks of things, you say 'importname.setScore', not 'nameOfInstance.setScore'.)
+        this.stats.setScore(); // runs the setScore function from statsBar. No longer needs an argument cos is getting value from within statsBar.
     }
 }
 

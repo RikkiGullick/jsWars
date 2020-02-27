@@ -38,7 +38,7 @@ export default class Explosion {
 
     _destroy () {
         StatsBar.score += 100; // Add 100 to scoreExplosion in instance game of gameSystem. Do I need a capital?
-        console.log(StatsBar.score); // This is logging 1 for each explosion. Sort of good. But also drat. Need to approach this differently cos need more 'globally available' way of storing how many destroy/explosions have happened. So why only ever 1? theory is that perhaps a new instance of Explosion is created with each entity, and therefore the variable scoreExplosion gets reset to 0 so it only ever gets plus 1 each time _destroy runs - and it can clearly only run once for each entity! Or something. I'll look into this another time after more coffee.
+        console.log(StatsBar.score); // NaN! Why is this undefined? Why can't it see the property in statsBar? Or can it, and I'm getting something else wrong?
         if (this.destroyed) return;
         this.destroyed = true;
         this.$element.remove();
