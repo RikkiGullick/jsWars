@@ -20,3 +20,31 @@ Think about it this way.  You are Jenny.  So Jenny.name is "Jenny".  If anyone c
 
 
 Rik's wise words: "First make it work, THEN make it right!"
+
+
+
+rikki:croydon:  9:08 AM
+Import is the opposite of explort.  Import GETS what export GIVES.  I think you get that, right?
+Okay, look at line 50 of game.js.
+What we are exporting is an INSTANCE of game.  As in, this IS a game.
+
+Now look at line 6 of StatsBar
+What we are exporting is the stats bar CLASS.  Not an instance of that class!
+Different things, right?
+
+jenny.n  9:10 AM
+Because the instance is created in the file it's imported into.
+It just needs to be able to 'see' the class, right?
+
+rikki:croydon:  9:11 AM
+Well, yeah - expect that's not what you're doing!  In explosion, you're treating the import like it is an INSTANCE of statsbar, not a class!
+Now, JavaScript is annoying here, as it works.  Sort of.  And at some point, I'll tell you why.  But not right now.
+So.... tell me this....
+WHERE is the instance of StatsBar created?
+
+jenny.n  9:12 AM
+in game. I think (without looking)
+
+rikki:croydon: 
+And you already have 'game' in explosion! 
+In explosion, Game is being exoported as Game.  So Game.stats.  Technically, that should be a lower case 'G' here really.

@@ -1,6 +1,5 @@
 ﻿
 import Game from "../game/game.js";
-// import StatsBar from '../game/statsBar.js';  // Don't need this - this imports the class, not the instance of the statsbar created in Game. We already have that! 
 
 export default class Explosion {
     $element = null;
@@ -37,8 +36,7 @@ export default class Explosion {
     }
 
     _destroy () {
-        Game.stats.score += 100; // Add 100 to scoreExplosion in instance game of gameSystem. Do I need a capital?
-        console.log(Game.stats.score); // NaN! Why is this undefined? Why can't it see the property in statsBar? Or can it, and I'm getting something else wrong? UPDATE - I was originally referencing the imported class, not the instance created in 'game'. Which is already being imported here.
+        Game.stats.score += 100; 
         if (this.destroyed) return;
         this.destroyed = true;
         this.$element.remove();
