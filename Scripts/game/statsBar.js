@@ -1,7 +1,7 @@
 ﻿
 // import Explosion from '../explosion/explosion.js';
 
-// Can't remember why I was trying to import Explosion!  
+// Can't remember why I was trying to import Explosion!  I didn't need to.
 
 export default class StatsBar {
     _$tick = null;
