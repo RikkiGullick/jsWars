@@ -1,0 +1,22 @@
+So.. simple next steps.  And a few comments.
+1) Why is it called scoreExplosion?  What other score is there that's to come? 
+--DONE
+2) 1 point per ship?  Really?  Is that all I get? 😂.  Have you never PLAYED space invaders???
+--DONE
+3) Ooh, so this is more real coding.
+
+You've made score a property of 'game' - but is the 'score' not a stat?  So where, perhaps, should it be stored?
+
+It is obvious - and usual - that people do too much in their "base" object (game, in this case).  Sure the 'score' is a property of the game!  But so is everything!
+
+Have a think about that.  Perhaps move it?  And on that, this one I've never covered.  But...
+
+score is a property.  Some people insist on properties being private AND only modifiable by the class that the property exists in!  Here, that's a good idea.  So if score is in 'game' (as it is now, but see above), then only the GAME class should modify it directly.  Instead, maybe have a method called increaseScore on game which does just that!
+
+There's a safety in this.  Currently, anything can do Game.scoreExplosion = 'fred'.  Which wouldn't fail!  But is clearly wrong.  Hence you make those properties 'private'!
+
+Think about it this way.  You are Jenny.  So Jenny.name is "Jenny".  If anyone could just go around changing that, life would be a nightmare!!! 😂 
+
+
+
+Rik's wise words: "First make it work, THEN make it right!"
