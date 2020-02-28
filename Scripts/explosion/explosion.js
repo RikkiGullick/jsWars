@@ -36,7 +36,7 @@ export default class Explosion {
     }
 
     _destroy () {
-        Game.stats.score += 100; 
+        Game.stats.updateScore(100);
         if (this.destroyed) return;
         this.destroyed = true;
         this.$element.remove();

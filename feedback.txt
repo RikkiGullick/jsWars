@@ -48,3 +48,11 @@ in game. I think (without looking)
 rikki:croydon: 
 And you already have 'game' in explosion! 
 In explosion, Game is being exoported as Game.  So Game.stats.  Technically, that should be a lower case 'G' here really.
+
+
+
+Next task:
+
+Change it so explosion calls a function in statsBar which updates the score.
+A) This stops explosion.js from being able to mess with the score - takes its power away a bit.
+B) This means lots of files can run the function, rather than having to have the same function in every files to do the same thing.

@@ -14,7 +14,14 @@ export default class StatsBar {
         this._$tick.text(value);
     }
 
+    updateScore(value) {
+        if(value > 0) {
+            this.score = this.score + value;
+        }
+    }
+
     setScore() {
         this._$score.text(`Score: ${this.score}`);
     }
+
 };
