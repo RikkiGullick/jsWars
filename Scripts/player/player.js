@@ -34,6 +34,7 @@ export default class Player {
     removeLife(howMuch) {
         if (this.destroyed) return;
         this.life = this.life - howMuch;
+        Game.stats.displayLife(this.life);  // Two issues - firstly this only runs when collision happens - need to run displayLife at the start. This should be a different function that just updates the life. Secondly, life is going down to -10 which looks a bit weird! Want to fix this.
         if (this.life < 0) this._explode();
         else this._showPain();
     }
