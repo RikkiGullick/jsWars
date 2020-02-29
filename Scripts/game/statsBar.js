@@ -16,11 +16,11 @@ export default class StatsBar {
 
     updateScore(value) {
         if(value > 0) {
-            this.score = this.score + value;
+            this.score += value;
         }
     }
 
-    setScore() {
+    displayScore() {
         this._$score.text(`Score: ${this.score}`);
     }
 

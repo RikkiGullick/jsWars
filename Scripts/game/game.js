@@ -40,7 +40,7 @@ class GameSystem {
         this._tick++;
 
         this.stats.setTick(this._tick);
-        this.stats.setScore(); 
+        this.stats.displayScore(); 
     }
 }
 
