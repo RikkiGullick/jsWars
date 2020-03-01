@@ -16,7 +16,6 @@ export default class Player {
     painTimeoutId = null;
 
     energy = 1;
-    life = 40;
     type = 'player';
 
     constructor() {
@@ -33,9 +32,9 @@ export default class Player {
 
     removeLife(howMuch) {
         if (this.destroyed) return;
-        this.life = this.life - howMuch;
-        Game.stats.displayLife(this.life);  // Two issues - firstly this only runs when collision happens - need to run displayLife at the start. This should be a different function that just updates the life. Secondly, life is going down to -10 which looks a bit weird! Want to fix this.
-        if (this.life < 0) this._explode();
+        Game.stats.life = Game.stats.life - howMuch;
+        // Game.stats.updateLife(this.life);  // Two issues - firstly this only runs when collision happens - need to run displayLife at the start. This should be a different function that just updates the life. Secondly, life is going down to -10 which looks a bit weird! Want to fix this. // UPDATE - changed life to 50 and _explode will run if life less than OR EQUAL TO zero. UPDATE - moving life to statsBar. Removing this function as it's not needed. Just need to run displayLife in game now. UPDATE - hahahahahahahahhahaaa I now live forever cos I've forgotten to update the line below to look at Game.stats.life! :D  FINAL UPDATE - Yay, everything works. Now, are my function names confusing? Hmm, no I think this is okay, cos this function removes life. The one in statsBar displays life. Everything does what it says on the tin. All good.
+        if (Game.stats.life <= 0) this._explode();
         else this._showPain();
     }
 
