@@ -147,6 +147,7 @@ footer {
   border-bottom: none; }
   #stats > * {
     display: block;
-    float: left; }
+    float: left;
+    padding-right: 10px; }
 
 /*# sourceMappingURL=styles.css.map */

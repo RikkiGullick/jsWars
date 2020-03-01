@@ -1,0 +1,58 @@
+So.. simple next steps.  And a few comments.
+1) Why is it called scoreExplosion?  What other score is there that's to come? 
+--DONE
+2) 1 point per ship?  Really?  Is that all I get? 😂.  Have you never PLAYED space invaders???
+--DONE
+3) Ooh, so this is more real coding.
+
+You've made score a property of 'game' - but is the 'score' not a stat?  So where, perhaps, should it be stored?
+
+It is obvious - and usual - that people do too much in their "base" object (game, in this case).  Sure the 'score' is a property of the game!  But so is everything!
+
+Have a think about that.  Perhaps move it?  And on that, this one I've never covered.  But...
+
+score is a property.  Some people insist on properties being private AND only modifiable by the class that the property exists in!  Here, that's a good idea.  So if score is in 'game' (as it is now, but see above), then only the GAME class should modify it directly.  Instead, maybe have a method called increaseScore on game which does just that!
+
+There's a safety in this.  Currently, anything can do Game.scoreExplosion = 'fred'.  Which wouldn't fail!  But is clearly wrong.  Hence you make those properties 'private'!
+
+Think about it this way.  You are Jenny.  So Jenny.name is "Jenny".  If anyone could just go around changing that, life would be a nightmare!!! 😂 
+
+
+
+Rik's wise words: "First make it work, THEN make it right!"
+
+
+
+rikki:croydon:  9:08 AM
+Import is the opposite of explort.  Import GETS what export GIVES.  I think you get that, right?
+Okay, look at line 50 of game.js.
+What we are exporting is an INSTANCE of game.  As in, this IS a game.
+
+Now look at line 6 of StatsBar
+What we are exporting is the stats bar CLASS.  Not an instance of that class!
+Different things, right?
+
+jenny.n  9:10 AM
+Because the instance is created in the file it's imported into.
+It just needs to be able to 'see' the class, right?
+
+rikki:croydon:  9:11 AM
+Well, yeah - expect that's not what you're doing!  In explosion, you're treating the import like it is an INSTANCE of statsbar, not a class!
+Now, JavaScript is annoying here, as it works.  Sort of.  And at some point, I'll tell you why.  But not right now.
+So.... tell me this....
+WHERE is the instance of StatsBar created?
+
+jenny.n  9:12 AM
+in game. I think (without looking)
+
+rikki:croydon: 
+And you already have 'game' in explosion! 
+In explosion, Game is being exoported as Game.  So Game.stats.  Technically, that should be a lower case 'G' here really.
+
+
+
+Next task:
+
+Change it so explosion calls a function in statsBar which updates the score.
+A) This stops explosion.js from being able to mess with the score - takes its power away a bit.
+B) This means lots of files can run the function, rather than having to have the same function in every files to do the same thing.

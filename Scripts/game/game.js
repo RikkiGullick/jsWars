@@ -5,15 +5,17 @@ import View from './view.js';
 import EntityManager from '../entities/entityManager.js';
 
 class GameSystem {
-    entityManager = null;;
+    entityManager = null; 
     _view = null;
     _player = null;
     _tick = 0;
-
+    
+    
     constructor() {
         this.entityManager = new EntityManager();
-        this.stats = new StatsBar();
+        this.stats = new StatsBar(); 
         this._view = new View();
+        
     }
 
     start() {
@@ -38,6 +40,7 @@ class GameSystem {
         this._tick++;
 
         this.stats.setTick(this._tick);
+        this.stats.displayScore(); 
     }
 }
 

@@ -10,6 +10,7 @@ export default class Explosion {
     scale = 1;
     destroyed = false;
     _age = 0;
+    
 
     constructor (x, y, xSpeed, ySpeed, cssClass, maxAge) {
         this.x = x;
@@ -35,6 +36,7 @@ export default class Explosion {
     }
 
     _destroy () {
+        Game.stats.updateScore(100);
         if (this.destroyed) return;
         this.destroyed = true;
         this.$element.remove();
