@@ -4,14 +4,14 @@ export default class StatsBar {
     _$score = null; 
     _$life = null;
     score = 0; 
-    life = 50;
+    life = 250; 
     
     constructor() {
         this._$tick = $('#tick');
         this._$score = $('#score'); 
         this._$life = $('#life');
         this.score = 0;
-        this.life = 50;
+        this.life = 250; // updated from 50 to 250 for testing purposes
     }
 
     setTick(value) {
@@ -30,6 +30,7 @@ export default class StatsBar {
 
     displayLife() {
         this._$life.text(`Life: ${this.life}`); 
+        this._$life.css("color", `rgb(147, ${this.life}, 0)`); 
     }
-    // Need to think about this function and what I am passing to it when. 
+    
 };
