@@ -3,6 +3,7 @@ export default class StatsBar {
     _$tick = null;
     _$score = null; 
     _$life = null;
+    _$lifeBar = null;
     score = 0; 
     life = 250; 
     
@@ -10,6 +11,7 @@ export default class StatsBar {
         this._$tick = $('#tick');
         this._$score = $('#score'); 
         this._$life = $('#life');
+        this._$lifeBar = $('#lifeBar');
         this.score = 0;
         this.life = 250; // updated from 50 to 250 for testing purposes
     }
@@ -26,6 +28,7 @@ export default class StatsBar {
 
     updateLife(value) {
         this.life -= value; 
+        this._$lifeBar.css({"width": `${(this.life / 2.5) + 5}%`, "background-color": `rgb(200, ${this.life}, 0)`}); 
     }
 
     displayScore() {
