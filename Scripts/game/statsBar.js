@@ -24,6 +24,10 @@ export default class StatsBar {
         }
     }
 
+    updateLife(value) {
+        this.life -= value; 
+    }
+
     displayScore() {
         this._$score.text(`Score: ${this.score}`);
     }
