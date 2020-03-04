@@ -12,8 +12,6 @@ export default class StatsBar {
         this._$score = $('#score'); 
         this._$life = $('#life');
         this._$lifeBar = $('#lifeBar');
-        this.score = 0;
-        this.life = 250; 
         this.displayScore();
         this.displayLife();
     }
@@ -22,14 +20,14 @@ export default class StatsBar {
         this._$tick.text(value);
     }
 
-    updateScore(value) {
+    increaseScore(value) {
         if(value > 0) {
             this.score += value;
             this.displayScore();
         }
     }
 
-    updateLife(value) {
+    decreaseLife(value) {
         this.life -= value;  
         this.displayLife();
     }

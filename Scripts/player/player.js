@@ -32,7 +32,7 @@ export default class Player {
 
     removeLife(howMuch) {
         if (this.destroyed) return;
-        Game.stats.updateLife(howMuch); 
+        Game.stats.decreaseLife(howMuch); 
         if (Game.stats.life <= 0) this._explode();
         else this._showPain();
     }
