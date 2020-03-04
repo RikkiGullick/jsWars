@@ -39,8 +39,6 @@ class GameSystem {
         this._view.draw();
         this._tick++;
         this.stats.setTick(this._tick);
-        // this.stats.displayScore(); // moved these to statsBar constructor so they don't run every 60th of a second
-        // this.stats.displayLife();
     }
 }
 

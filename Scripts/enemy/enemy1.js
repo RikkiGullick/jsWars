@@ -14,7 +14,7 @@ export default class Enemy1 {
     _xSpeed = 0;
     _ySpeed = 0;
 
-    energy = 50; // updated from 10 to 50 for testing purposes.
+    energy = 50; 
     life = 10;
     type = 'enemy';
     collideWith = 'player';

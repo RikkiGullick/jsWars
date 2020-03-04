@@ -13,7 +13,7 @@ export default class StatsBar {
         this._$life = $('#life');
         this._$lifeBar = $('#lifeBar');
         this.score = 0;
-        this.life = 250; // updated from 50 to 250 for testing purposes
+        this.life = 250; 
         this.displayScore();
         this.displayLife();
     }
@@ -30,8 +30,7 @@ export default class StatsBar {
     }
 
     updateLife(value) {
-        this.life -= value; 
-        this._$lifeBar.css({"width": `${(this.life / 2.5) + 5}%`, "background-color": `rgb(200, ${this.life}, 0)`}); 
+        this.life -= value;  
         this.displayLife();
     }
 
@@ -42,6 +41,7 @@ export default class StatsBar {
     displayLife() {
         this._$life.text(`Life: ${this.life}`); 
         this._$life.css("color", `rgb(147, ${this.life}, 0)`); 
+        this._$lifeBar.css({"width": `${(this.life / 2.5) + 5}%`, "background-color": `rgb(200, ${this.life}, 0)`});
     }
     
 };
