@@ -14,6 +14,8 @@ export default class StatsBar {
         this._$lifeBar = $('#lifeBar');
         this.score = 0;
         this.life = 250; // updated from 50 to 250 for testing purposes
+        this.displayScore();
+        this.displayLife();
     }
 
     setTick(value) {
@@ -23,12 +25,14 @@ export default class StatsBar {
     updateScore(value) {
         if(value > 0) {
             this.score += value;
+            this.displayScore();
         }
     }
 
     updateLife(value) {
         this.life -= value; 
         this._$lifeBar.css({"width": `${(this.life / 2.5) + 5}%`, "background-color": `rgb(200, ${this.life}, 0)`}); 
+        this.displayLife();
     }
 
     displayScore() {

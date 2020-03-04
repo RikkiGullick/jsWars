@@ -147,10 +147,27 @@ footer {
   border-bottom: none; }
   #stats > * {
     display: block;
-    float: left;
-    padding-right: 10px; }
+     }
+
+#tick {
+  position: absolute;
+  right: 20px;
+  top: 5px;}
+
+#score {
+  position: absolute;
+  left: 280px;
+  top: 5px;}
+
+#life {
+  position: absolute;
+  left: 20px;
+  top: 5px;}  
 
 #lifeBarContainer {
+  position: absolute;
+  left: 100px;
+  top: 5px;
   width: 150px;
   height: 15px;
   border: 1px solid #666;
