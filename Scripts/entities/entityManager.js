@@ -52,7 +52,10 @@ export default class EntityManager {
     }
 
     outOfBounds (entity) {
-        return entity.x < 0 || entity.y < 0 || entity.x > this._bounds.width || entity.y > this._bounds.height;
+        console.log(entity.width);
+        return entity.x < -50 || entity.y < -50 || entity.x > (this._bounds.width) || entity.y > (this._bounds.height);
+        // I have a theory. I believe it's measuring from the top left of the enemy div, so therefore to return true at the bottom the enemy has to have pretty much gone off the screen, but to return true at the top or left, the enemy only has to touch the edge of the screen. I need to get the width / height of the enemy div, and make the second two bits say 'if enemy position-left is greater than (bounds.width + enemy width), or if enemy position-top is greater than (bounds.height + enemy height). Or something like that.
+        // UPDATE Did not work! Well obviously. I am all back to front. I need to sort top and left, not right and bottom. Trying minus numbers in the first two bits. Yay, fixed!
     }
 
     getBounds () {
