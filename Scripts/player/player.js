@@ -16,7 +16,6 @@ export default class Player {
     painTimeoutId = null;
 
     energy = 1;
-    life = 40;
     type = 'player';
 
     constructor() {
@@ -33,8 +32,8 @@ export default class Player {
 
     removeLife(howMuch) {
         if (this.destroyed) return;
-        this.life = this.life - howMuch;
-        if (this.life < 0) this._explode();
+        Game.stats.decreaseLife(howMuch); 
+        if (Game.stats.life <= 0) this._explode();
         else this._showPain();
     }
 

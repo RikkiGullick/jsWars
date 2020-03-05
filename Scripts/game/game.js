@@ -38,9 +38,7 @@ class GameSystem {
         this.entityManager.update(this._tick);
         this._view.draw();
         this._tick++;
-
         this.stats.setTick(this._tick);
-        this.stats.displayScore(); 
     }
 }
 
