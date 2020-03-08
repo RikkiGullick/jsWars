@@ -3,12 +3,12 @@ import Explosion from "../explosion/explosion.js";
 import Game from "../game/game.js";
 
 export default class Enemy1 {
-    $element = null;
-    x = 0;
+    $element = null; // this is the jQuery object containing our actual div.
+    x = 0;  // position
     y = 0;
-    width = 50;
+    width = 50;  // size
     height = 50;
-    isNew = true;
+    isNew = true;  // what's this? Is it being used yet? Will go look later.
     rotation = 0;
     destroyed = false;
     _xSpeed = 0;
@@ -26,11 +26,12 @@ export default class Enemy1 {
         this._xSpeed = -Math.random() * 6;
         this._ySpeed = (Math.random() - 0.5) * 2;
         this._rotSpeed = (Math.random() - 0.5) * 3;
-        this._createElement();
-        Game.entityManager.add(this);
+        // this._createElement();
+        Game.entityManager.createElement(); // testing if I can move the createElement function so my new enemy can use it. To revert, comment this line and uncomment line above.
+        Game.entityManager.add(this); // when constructor function is first run, it pushes this instance of Enemy1 into the array 'entities' in instance of entityManager created by game instance of GameSystem. 
     }
 
-    update () {
+    update () {  // guessing this runs whenever 'run' is run in the loop! There are a couple of 'update' functions, need to get it straight in my head which one is which. There's a different one in entityManager.
         this.x += this._xSpeed;
         this.y += this._ySpeed;
         this.rotation += this._rotSpeed;
@@ -63,8 +64,8 @@ export default class Enemy1 {
         this.$element.remove();
         this.$element = null;
     }
-
-    _createElement () {
+    // to revert, uncomment function below, and comment the one in entityManager.
+    /*  _createElement () {
         this.$element = $('<div></div>').addClass('entity enemy1');
-    }
+        } */
 }
