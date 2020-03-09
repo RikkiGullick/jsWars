@@ -52,7 +52,7 @@ export default class EntityManager {
     }
 
     outOfBounds (entity) {
-        return entity.x < 0 || entity.y < 0 || entity.x > this._bounds.width || entity.y > this._bounds.height;
+        return entity.x < (0 - entity.width) || entity.y < (0 - entity.height) || entity.x > this._bounds.width || entity.y > this._bounds.height;
     }
 
     getBounds () {
