@@ -26,8 +26,8 @@ export default class Enemy1 {
         this._xSpeed = -Math.random() * 6;
         this._ySpeed = (Math.random() - 0.5) * 2;
         this._rotSpeed = (Math.random() - 0.5) * 3;
-        // this._createElement();
-        Game.entityManager.createElement(); // testing if I can move the createElement function so my new enemy can use it. To revert, comment this line and uncomment line above. What do I do to the below in order to make 'this' be the thing that's created by the 'createELement' function in entityManager?
+        this._createElement();
+        // Game.entityManager.createElement(); // testing if I can move the createElement function so my new enemy can use it. To revert, comment this line and uncomment line above. What do I do to the below in order to make 'this' be the thing that's created by the 'createELement' function in entityManager?
         // UPDATE - it looks like it's working but my enemy1s are invisible!!! Is this because they are a null object? Is my div never making it back over here? Or is the div being created but it's not adding the class? Perhaps if I add some text into the div they'll at least be visible? No. Okay, it's running the function but I think the div is not making it back over here to be 'this', hence all my console errors. Hmm. Presumably it keeps trying to run all the functions in my enemy1 instances but they are all null obejects so it gets cross.
         Game.entityManager.add(this); // when constructor function is first run, it pushes this instance of Enemy1 into the array 'entities' in instance of entityManager created by game instance of GameSystem. 
     }
@@ -66,7 +66,7 @@ export default class Enemy1 {
         this.$element = null;
     }
     // to revert, uncomment function below, and comment the one in entityManager.
-    /*  _createElement () {
+    _createElement () {
         this.$element = $('<div></div>').addClass('entity enemy1');
-        } */
+        } 
 }
