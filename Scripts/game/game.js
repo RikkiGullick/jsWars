@@ -23,6 +23,7 @@ class GameSystem {
         this._startLoop();
     }
 
+    // Slow the tick down for confirming bullet behaviour etc
     _startLoop() {
         var _this = this;
         this._intervalId = setInterval(function () {
