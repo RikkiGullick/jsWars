@@ -1,11 +1,42 @@
 ﻿
 import Explosion from "../explosion/explosion.js";
 import Game from "../game/game.js";
+// import Enemy from "../enemy/enemy-base.js";
 
-export default class Enemy1 {
-    $element = null; // this is the jQuery object containing our actual div.
+class Enemy {
+
     x = 0;  // position
     y = 0;
+    // bounds = ??? // Maybe I should try declaring bounds here, but then 'var' creates it in the constructor again! So that won't work. 
+
+    constructor() {
+        console.log("superconstructor is working!");
+        console.log(this.x); // logs 0 cos constructor in child class hasn't run yet
+        var bounds = Game.entityManager.getBounds(); // This line is in constructor for enemy1 and 2, and is referenced by other lines. So decided to move it to super class. Doesn't work. I need to fully understand why we have var bounds in the constructor anyway. It runs a function once when the class is set up. Why is it not just in the class, rather than in the constructor? Is it because it just needs to set bounds according to the result of that function at that specific time? So the function never appears in the instance, just its result? Is this where I'm going wrong? Somehow the 'var' isn't making it to the instance? God I'm confused!  OHHHH hang on, is var only in existence WHILST the constructor is run? Never to be seen again? So it's only stored so that the rest of the constructor can run???
+
+        // console errors below: 
+        /* enemy1.js:38 Uncaught ReferenceError: bounds is not defined
+    at new Enemy1 (enemy1.js:38)
+    at EntityManager._createNewStuff (entityManager.js:51)
+    at EntityManager.update (entityManager.js:39)
+    at GameSystem._run (game.js:39)
+    at game.js:30 */ 
+
+    // Enemy1 can't read bounds. It's never getting referenced. Why? 
+
+        this.x = bounds.width;
+        this.y = bounds.height * Math.random();
+
+        // OMFG I only went and F**KING FIXED IT!!!!!!! See insane ramblings above. Told you it would be something bleedin' obvious!!!!! 
+
+    }
+
+}
+
+export default class Enemy1 extends Enemy {
+    $element = null; // this is the jQuery object containing our actual div.
+    // x = 0;  // moved to base class
+    // y = 0; // moved to base class
     width = 50;  // size
     height = 50;
     isNew = true;  // what's this? Is it being used yet? Will go look later.
@@ -20,9 +51,10 @@ export default class Enemy1 {
     collideWith = 'player';
 
     constructor () {
-        var bounds = Game.entityManager.getBounds();
-        this.x = bounds.width;
-        this.y = bounds.height * Math.random();
+        super(); // Need to run the constructor in the base class otherwise it gets cross! 
+        // var bounds = Game.entityManager.getBounds(); // Appears in both enemy1 & enemy2. Can't make it work when I move it to base class constructor. Thought it was cos it needs exporting but that didn't seem to work either. 
+        // this.x = bounds.width; // Eventually realise I need to move these to base class too, cos 'var bounds = etc' only exists so these next two lines can run.
+        // this.y = bounds.height * Math.random();
         this._xSpeed = -Math.random() * 6;
         this._ySpeed = (Math.random() - 0.5) * 2;
         this._rotSpeed = (Math.random() - 0.5) * 3;

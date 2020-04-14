@@ -2,6 +2,7 @@
 import CollisionManager from "./collisionManager.js";
 import Enemy1 from "../enemy/enemy1.js";
 import Enemy2 from "../enemy/enemy2.js"; // import my new enemy
+import Enemy from "../enemy/enemy1.js";
 import Planet from "../background/planet.js";
 
 export default class EntityManager {
@@ -45,15 +46,16 @@ export default class EntityManager {
 
         // I will need to make a new function like the one below in order for my new enemy to appear. Will set it similarly to start with, then look at timings later. I may switch off enemy1 temporarily whilst I work on enemy2.
 
-        // Commented out the below to stop enemy1 appearing temporarily.
-        /* if (Math.random() < createFactor && tick < 1200) { // createFactor keeps increasing so creation of enemy1 is increased?? Maybe I could switch it to 'greater than' so they are gradually reduced? Or add another clause (what's the word for this? Expression?) to this if statement so they only get created when tick is between two certain figures.
+        
+        if ( /* Math.random() < createFactor && tick < 1200 */ tick === 1) { // createFactor keeps increasing so creation of enemy1 is increased?? Maybe I could switch it to 'greater than' so they are gradually reduced? Or add another clause (what's the word for this? Expression?) to this if statement so they only get created when tick is between two certain figures.
             new Enemy1(); // Hmm. This is interesting. It's not storing this as a variable - it just 'runs' the constructor??? Probably cos the constructor function stores it to an array?
-        } */
+        } 
 
-        // Commented out the tick in the below so enemy2 appears from the start.
-        if (Math.random() < createFactor /* && tick > 1200 */ ) { 
+        /*
+        if (Math.random() < createFactor && tick > 1200 ) { 
             new Enemy2(); 
         }
+        */
 
         if (tick % 500 === 0 && Math.random() < 0.3) { // each time the tick reaches a multiple of 500, there's a 30% chance a planet will be created.
             new Planet();
