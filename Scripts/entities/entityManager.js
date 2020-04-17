@@ -56,6 +56,7 @@ export default class EntityManager {
             new Enemy2(); 
         }
         
+        
 
         if (tick % 500 === 0 && Math.random() < 0.3) { // each time the tick reaches a multiple of 500, there's a 30% chance a planet will be created.
             new Planet();

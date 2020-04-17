@@ -4,21 +4,21 @@ import Game from "../game/game.js";
 import Enemy from "./enemy-base.js";
 
 export default class Enemy2 extends Enemy {
-    $element = null; // this is the jQuery object containing our actual div.
+    // $element = null; // this is the jQuery object containing our actual div.
     // x = 0;  // position
     // y = 0;
     // width = 50;  // size
     // height = 50;
-    isNew = true;  // what's this? Is it being used yet? Will go look later.
-    rotation = 0; // This sets the angle of the ship.
-    destroyed = false;
-    _xSpeed = 0;
-    _ySpeed = 0; // Need to look at the y speed that is generated in the constructor, and turn this into a sensible angle. Let's see if I can do something random to start with and just make it work. 
+    // isNew = true;  // what's this? Is it being used yet? Will go look later.
+    // rotation = 0; // This sets the angle of the ship.
+    // destroyed = false;
+    // _xSpeed = 0;
+    // _ySpeed = 0; // Need to look at the y speed that is generated in the constructor, and turn this into a sensible angle. Let's see if I can do something random to start with and just make it work. 
 
-    energy = 50; 
-    life = 10;
-    type = 'enemy';
-    collideWith = 'player';
+    // energy = 50; 
+    // life = 10;
+    // type = 'enemy';
+    // collideWith = 'player';
 
     constructor () {
         super();
@@ -26,12 +26,26 @@ export default class Enemy2 extends Enemy {
         // this.x = bounds.width;
         // this.y = bounds.height * Math.random();
         // this._xSpeed = -Math.random() * 6; // Original: number between 0 and -1, times 6. End up with a number between 0 and -6. Enemy can only go left. 
+        // this._xSpeed = (-Math.random() * 2)  - 5; // number between 0 and -1 times 2, - 5. End up with a number between -5 and -7. Enemy can only go left, but quicker and less variation! 
+        // this._ySpeed = (Math.random() - 0.5) * 2; // number between -0.5 and 0.5, times 2. ENd up with a number between -1 and 1. Enemy can go up or down.
+        // this._rotSpeed = (Math.random() - 0.5) * 3; // Should we keep _rotSpeed in the constructor in case we decide we want to rotate them at some other point, like when we blow them up?
+        // this.rotation = this._ySpeed * -7; // This is very unscientific/unmathematic, but does sort of work for now.... :D 
+        // this._createElement();
+        // Game.entityManager.add(this); // when constructor function is first run, it pushes this instance of Enemy1 into the array 'entities' in instance of entityManager created by game instance of GameSystem. 
+    }
+
+    _setSpeed() {
+        console.log("_setSpeed is running!");
         this._xSpeed = (-Math.random() * 2)  - 5; // number between 0 and -1 times 2, - 5. End up with a number between -5 and -7. Enemy can only go left, but quicker and less variation! 
-        this._ySpeed = (Math.random() - 0.5) * 2; // number between -0.5 and 0.5, times 2. ENd up with a number between -1 and 1. Enemy can go up or down.
-        this._rotSpeed = (Math.random() - 0.5) * 3; // Should we keep _rotSpeed in the constructor in case we decide we want to rotate them at some other point, like when we blow them up?
-        this.rotation = this._ySpeed * -7; // This is very unscientific/unmathematic, but does sort of work for now.... :D 
-        this._createElement();
-        Game.entityManager.add(this); // when constructor function is first run, it pushes this instance of Enemy1 into the array 'entities' in instance of entityManager created by game instance of GameSystem. 
+        this._ySpeed = (Math.random() - 0.5) * 2; 
+    }
+
+    _setRotSpeed() {
+        this._rotSpeed = (Math.random() - 0.5) * 3; 
+    }
+
+    _setRotation() {
+        this.rotation = this._ySpeed * -7;
     }
 
     // The below function is verrrry slightly different in both enemies. Should I put it in the base class and then override it in in enemy1 to add back in the line that's missing in enemy2? I'm going to try,  by placing the function in the base class, then overriding it in enemy1 by typing it in, with just the missing line, with super.update(); in the first line.
@@ -51,7 +65,7 @@ export default class Enemy2 extends Enemy {
     } 
     */ 
 
-    // Aha! I've found the culprit. Enemy2 blows up when life is LESS THAN zero - which explains my confusion over bullet energy 10 vs enemy2 life 10!
+    // So removeLife is subtly different in both enemies. But has moving it actually saved any code? Should it even appear in the base class?
     removeLife (howMuch) {
         super.removeLife(howMuch);
         if (this.life <= 0) {
