@@ -2,6 +2,7 @@
 import CollisionManager from "./collisionManager.js";
 import Enemy1 from "../enemy/enemy1.js";
 import Enemy2 from "../enemy/enemy2.js"; 
+import Enemy3 from "../enemy/enemy3.js"; 
 import Planet from "../background/planet.js";
 
 export default class EntityManager {
@@ -42,8 +43,12 @@ export default class EntityManager {
         var createFactor = 0.04;
         if (tick > 400) createFactor += 0.02;   
         if (tick > 800) createFactor += 0.02;  
-        
-        
+
+        if ( Math.random() < createFactor && tick < 1200 ) { 
+            new Enemy3();
+        } 
+
+        /*
         if ( Math.random() < createFactor && tick < 1200 ) { 
             new Enemy1();
         } 
@@ -52,6 +57,7 @@ export default class EntityManager {
         if ( Math.random() < createFactor && (tick > 1200) && (tick < 2400) ) { 
             new Enemy2(); 
         }
+        */
 
 
         if (tick % 500 === 0 && Math.random() < 0.3) {
