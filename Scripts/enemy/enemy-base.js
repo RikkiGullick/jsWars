@@ -4,11 +4,11 @@ import Game from "../game/game.js";
 
 export default class Enemy {
     $element = null; 
-    x = 0;  // position
+    x = 0; 
     y = 0;
-    width = 50;  // size
+    width = 50;  
     height = 50;
-    isNew = true;  // what's this? Is it being used yet? Will go look later.
+    isNew = true;  
     rotation = 0;
     destroyed = false;
     _xSpeed = 0;
@@ -23,10 +23,8 @@ export default class Enemy {
         var bounds = Game.entityManager.getBounds(); 
         this.x = bounds.width;
         this.y = bounds.height * Math.random();
-        // I suspect these lines are now running too early - they look like they need to be the last thing in the constructor cos these lines create the actual element and send it to the entityManager?
-        this._setSpeed();
-        this._setRotSpeed();
-        this._setRotation();
+        this._initSpeed();
+        this._initRotation();
         this._createElement();
         Game.entityManager.add(this);
 
@@ -52,9 +50,11 @@ export default class Enemy {
         this.$element = null;
     }
 
-    // Technically, moving the removeLife method to the base class has INCREASED the code weight! Was this worth it? 
     removeLife (howMuch) {
         this.life = this.life - howMuch;
+        if (this.life < 0) {
+            this._explode();
+        }
     }
 
     _explode () {
