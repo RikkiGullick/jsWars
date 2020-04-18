@@ -1,6 +1,7 @@
 ﻿
 import CollisionManager from "./collisionManager.js";
 import Enemy1 from "../enemy/enemy1.js";
+import Enemy2 from "../enemy/enemy2.js"; 
 import Planet from "../background/planet.js";
 
 export default class EntityManager {
@@ -27,24 +28,31 @@ export default class EntityManager {
         return this._entities;
     }
 
-    update (tick) {
+    update (tick) { 
         var _this = this;
         this._entities.forEach(function (entity, index) {
             entity.update(tick);
         });
         this._collisionManager.process(this._entities);
         this._entities = this._entities.filter(function (entity) { return !entity.destroyed; });
-        this._createNewStuff(tick);
+        this._createNewStuff(tick); 
     }
 
-    _createNewStuff (tick) {
+    _createNewStuff (tick) {    
         var createFactor = 0.04;
-        if (tick > 400) createFactor += 0.02;
-        if (tick > 800) createFactor += 0.02;
-
-        if (Math.random() < createFactor) {
+        if (tick > 400) createFactor += 0.02;   
+        if (tick > 800) createFactor += 0.02;  
+        
+        
+        if ( Math.random() < createFactor && tick < 1200 ) { 
             new Enemy1();
+        } 
+
+        
+        if ( Math.random() < createFactor && (tick > 1200) && (tick < 2400) ) { 
+            new Enemy2(); 
         }
+
 
         if (tick % 500 === 0 && Math.random() < 0.3) {
             new Planet();
@@ -58,5 +66,6 @@ export default class EntityManager {
     getBounds () {
         return this._bounds;
     }
+
 };
 
