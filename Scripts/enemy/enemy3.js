@@ -5,11 +5,11 @@ import Enemy from "./enemy-base.js";
 
 export default class Enemy3 extends Enemy {
 
-    life = 9;
+    life = 20;
 
     _initSpeed() {
-        this._xSpeed = (-Math.random() * 2)  - 5; 
-        this._ySpeed = (Math.random() - 0.5) * 2; 
+        this._xSpeed = (-Math.random() * 2)  - 2; 
+        this._ySpeed = 0; //(Math.random() - 0.5) * 2; 
     }
 
     _initRotation() {
@@ -20,4 +20,5 @@ export default class Enemy3 extends Enemy {
     _createElement () {
         this.$element = $('<div></div>').addClass('entity enemy3');
         } 
+        
 }
