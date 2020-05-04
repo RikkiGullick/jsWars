@@ -9,7 +9,7 @@ export default class Enemy3 extends Enemy {
 
     _initSpeed() {
         this._xSpeed = (-Math.random() * 2)  - 2; 
-        this._ySpeed = 0; //(Math.random() - 0.5) * 2; 
+        this._ySpeed = 0; 
     }
 
     _initRotation() {
