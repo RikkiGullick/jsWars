@@ -23,7 +23,6 @@ class GameSystem {
         this._startLoop();
     }
 
-    // Slow the tick down for confirming bullet behaviour etc
     _startLoop() {
         var _this = this;
         this._intervalId = setInterval(function () {
@@ -36,7 +35,7 @@ class GameSystem {
     }
 
     _run() {
-        this.entityManager.update(this._tick);  // runs update in entityManager, which in turn runs createNewtuff.
+        this.entityManager.update(this._tick); 
         this._view.draw();
         this._tick++;
         this.stats.setTick(this._tick);

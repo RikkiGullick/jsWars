@@ -5,11 +5,29 @@ import Enemy2 from "../enemy/enemy2.js";
 import Enemy3 from "../enemy/enemy3.js"; 
 import Planet from "../background/planet.js";
 
+
+class Level {
+    
+    currentLevelNumber = 0; // This should initialise currentLevelNumber at 0, and set that we expect it to always be a number.
+    
+    constructor(levelNumber) {
+        this.currentLevelNumber = levelNumber; // This should be setting currentLevelNumber of the instance to whatever levelNumber is passed in, rather than the base '0'. Let's comment this out and see if the base value of '0' is console logged. No!!! Still undefined. What have I done wrong???
+        this.logLevelCreation(); // 'this' runs the function in THIS instance presumably? 
+    }
+
+    logLevelCreation() {
+        console.log(this.currentlevelNumber); // Odd thing is, this worked once, but is now undefined. What have I changed??? It should take the currentLevelNumber of this instance, but it doesn't. 
+        console.log(`Level ${this.currentlevelNumber} has just been created.`); // Fixed my template literal - wrong type of bracket. Doh! Don't need both lines now.
+    }
+
+}
+
 export default class EntityManager {
     _entities = null;
     _$game = null;
     _bounds = null;
     _collisionManager = null;
+    _level = null; // dictates that level will be an object
 
     constructor () {
         this._collisionManager = new CollisionManager();
@@ -19,6 +37,7 @@ export default class EntityManager {
             width: this._$game.width(),
             height: this._$game.height()
         }
+        this._level = new Level(1);
     }
 
     add (entity) {
