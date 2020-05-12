@@ -6,18 +6,43 @@ import Enemy3 from "../enemy/enemy3.js";
 import Planet from "../background/planet.js";
 
 
+class Wave {
+
+    currentWaveNumber = 0;
+
+    constructor() {
+        // Don't yet know what I should put in here!
+        // pushWaveToWavesContainer();
+    }
+
+    /* pushWaveToWavesContainer() {
+        wavesContainer.push("I'm a wave, honest");
+        console.log(wavesContainer);
+    } */
+
+}
+
 class Level {
     
-    currentLevelNumber = 0; // This should initialise currentLevelNumber at 0, and set that we expect it to always be a number.
+    currentLevelNumber = 0; 
+    
+    wavesContainer = null; 
     
     constructor(levelNumber) {
-        this.currentLevelNumber = levelNumber; // This should be setting currentLevelNumber of the instance to whatever levelNumber is passed in, rather than the base '0'. Let's comment this out and see if the base value of '0' is console logged. No!!! Still undefined. What have I done wrong???
-        this.logLevelCreation(); // 'this' runs the function in THIS instance presumably? 
+        this.currentLevelNumber = levelNumber; 
+        this.logLevelCreation(); 
+
+        this.wavesContainer = [];
+        this.wavesContainer.push(new Wave());
+        this.logWaveCreation();
     }
 
     logLevelCreation() {
-        console.log(this.currentlevelNumber); // Odd thing is, this worked once, but is now undefined. What have I changed??? It should take the currentLevelNumber of this instance, but it doesn't. 
-        console.log(`Level ${this.currentlevelNumber} has just been created.`); // Fixed my template literal - wrong type of bracket. Doh! Don't need both lines now.
+        console.log(`Level ${this.currentLevelNumber} has just been created.`); 
+    }
+
+    logWaveCreation() {
+        console.log(this.wavesContainer[0]);
     }
 
 }
