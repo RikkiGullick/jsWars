@@ -4,13 +4,16 @@ import Enemy1 from "../enemy/enemy1.js";
 import Enemy2 from "../enemy/enemy2.js"; 
 import Enemy3 from "../enemy/enemy3.js"; 
 import Planet from "../background/planet.js";
+// import game from "../game/game.js"; // thought maybe this couldn't see my getter in game. But I am barking up the wrong whatsname. Hmm....
 
 
 class Wave {
 
     currentWaveNumber = 0;
+    // tick = 0;
 
-    constructor() {
+    constructor(tick) {
+        // this.tick = tick;
         // Don't yet know what I should put in here!
         // pushWaveToWavesContainer();
     }
@@ -28,12 +31,12 @@ class Level {
     
     wavesContainer = null; 
     
-    constructor(levelNumber) {
+    constructor(levelNumber, tick) {
         this.currentLevelNumber = levelNumber; 
         this.logLevelCreation(); 
 
         this.wavesContainer = [];
-        this.wavesContainer.push(new Wave());
+        this.wavesContainer.push(new Wave(tick));
         this.logWaveCreation();
     }
 
@@ -43,6 +46,7 @@ class Level {
 
     logWaveCreation() {
         console.log(this.wavesContainer[0]);
+        // console.log(`Tick is currently ${game.returnTick}`);
     }
 
 }
@@ -54,7 +58,7 @@ export default class EntityManager {
     _collisionManager = null;
     _level = null; // dictates that level will be an object
 
-    constructor () {
+    constructor (tick) {
         this._collisionManager = new CollisionManager();
         this._entities = [];
         this._$game = $('#game');
@@ -62,7 +66,7 @@ export default class EntityManager {
             width: this._$game.width(),
             height: this._$game.height()
         }
-        this._level = new Level(1);
+        this._level = new Level(1, tick); // I want the instance of level to know what the tick is. Game creates an instance of entityManager. Need to pass it the tick from there. 
     }
 
     add (entity) {

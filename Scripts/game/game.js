@@ -12,7 +12,7 @@ class GameSystem {
     
     
     constructor() {
-        this.entityManager = new EntityManager();
+        this.entityManager = new EntityManager(this._tick);
         this.stats = new StatsBar(); 
         this._view = new View();
         
@@ -40,6 +40,16 @@ class GameSystem {
         this._tick++;
         this.stats.setTick(this._tick);
     }
+
+    // place a get function in here so other things can access the tick? Nope - should be able to pass the tick to the EntityManager constructor. But will it only pass the tick at the point the instance was created? Argh. Let's try a getter and see what happens.
+
+    get returnTick() {
+        //return this._tick;
+        console.log(24);
+        return 42;
+    }
+
+
 }
 
 let game = new GameSystem();
