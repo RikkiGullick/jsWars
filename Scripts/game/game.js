@@ -10,9 +10,9 @@ class GameSystem {
     _player = null;
     _tick = 0;
     
-    
-    constructor() {
-        this.entityManager = new EntityManager(this._tick);
+    // 2. This runs when the instance 'game' is created.
+    constructor() { 
+        this.entityManager = new EntityManager(this._tick); // 3. This line creates a new instance of enetityManager. Go see EntityManager class!
         this.stats = new StatsBar(); 
         this._view = new View();
         
@@ -52,5 +52,5 @@ class GameSystem {
 
 }
 
-let game = new GameSystem();
+let game = new GameSystem(); // 1. creates an instance of Gamesystem. Runs the constructor! Go see above! 
 export default game;

@@ -4,7 +4,7 @@ import Enemy1 from "../enemy/enemy1.js";
 import Enemy2 from "../enemy/enemy2.js"; 
 import Enemy3 from "../enemy/enemy3.js"; 
 import Planet from "../background/planet.js";
-// import game from "../game/game.js"; // thought maybe this couldn't see my getter in game. But I am barking up the wrong whatsname. Hmm....
+// import game from "../game/game.js"; 
 
 
 class Wave {
@@ -25,7 +25,7 @@ class Wave {
 
 }
 
-class Level {
+class Level { // 6. So whilst instance of game starts being made, entityManager starts being made, and now an instance of this class Level starts being made! (At this point, none of the above are actually finished! This is why we can't import the instance of game and refer to it here - it's not been fully created yet!)
     
     currentLevelNumber = 0; 
     
@@ -46,12 +46,14 @@ class Level {
 
     logWaveCreation() {
         console.log(this.wavesContainer[0]);
-        // console.log(`Tick is currently ${game.returnTick}`);
+        // console.log(`Tick is currently ${game.returnTick}`);   // We can't use this yet cos 'game' doesn't exist!
     }
 
 }
 
-export default class EntityManager {
+// We want the tick from the game to be available to the wave. So we need to create the instance of level NOT in the constructor of entityManager. If we create our level instance AFTER game and entityManager instances have finished being created, all will be well, I htink?! Now, I just have to remember how / where to create the new level instance. I remember level and wave classes going into a separate file. We then imported the game instance into that file - presumably that file doesn't get 'opened' until after the game instance is created, as we won't call the stuff from it until after these are made? Where/when did we create the new instance of level? Hmm, I shall think on it and it will come back to me....  
+
+export default class EntityManager { // 4. Whilst the game instance is being created (the constructor function is running from GameSystem class) an instance of EntityManager is created. And whilst it's being created, the constructor runs and then an instance of Level is created! Go see 5 below! 
     _entities = null;
     _$game = null;
     _bounds = null;
@@ -66,7 +68,7 @@ export default class EntityManager {
             width: this._$game.width(),
             height: this._$game.height()
         }
-        this._level = new Level(1, tick); // I want the instance of level to know what the tick is. Game creates an instance of entityManager. Need to pass it the tick from there. 
+        this._level = new Level(1, tick); // 5. Whilst the instance of game is being created, and the instance of entityManager is being created, now, an instance of Level is being created! Go see 6 above!
     }
 
     add (entity) {
